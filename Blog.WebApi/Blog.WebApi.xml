@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Blog.WebApi.Controllers.ValuesController">
+            <summary>
+            ValuesController 测试
+            </summary>
+        </member>
+        <member name="M:Blog.WebApi.Controllers.ValuesController.Get">
+            <summary>
+            GET api/values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebApi.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            根据ID 查询元素 GET api/values/5
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebApi.Controllers.ValuesController.Post(Blog.Application.ViewModel.AddressViewModel)">
+            <summary>
+            创建元素 AddressViewModel
+            </summary>
+            <param name="addressView"></param>
+        </member>
+        <member name="M:Blog.WebApi.Controllers.ValuesController.Post(Blog.Application.ViewModel.StudentViewModel)">
+            <summary>
+            创建元素 StudentViewModel
+            </summary>
+            <param name="studentView"></param>
+        </member>
+        <member name="M:Blog.WebApi.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            根据Id 修改元素属性 // PUT api/values/5
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Blog.WebApi.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            根据ID删除元素  // DELETE api/values/5
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Blog.WebApi.Extentions.ConfigService.SwaggerService.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Swagger服务
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Blog.WebApi.Extentions.Config.SwaggerMiddleWare.UseSwaggerMiddleWare(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            swaggle中间件
+            </summary>
+            <param name="app"></param>
+        </member>
+    </members>
+</doc>

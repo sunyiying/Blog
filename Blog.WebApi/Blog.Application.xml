@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog.Application</name>
+    </assembly>
+    <members>
+        <member name="M:Blog.Application.AutoMapper.DomainToViewModelMappingProfile.#ctor">
+            <summary>
+            配置构造函数，用来创建关系映射
+            </summary>
+        </member>
+        <member name="T:Blog.Application.AutoMapper.ViewModelToDomainMappingProfile">
+            <summary>
+            View2Domain
+            </summary>
+        </member>
+        <member name="M:Blog.Application.AutoMapper.ViewModelToDomainMappingProfile.#ctor">
+            <summary>
+            ViewModel--->Domain
+            </summary>
+        </member>
+        <member name="T:Blog.Application.Interfaces.ICustomerAppService">
+            <summary>
+            定义 ICustomerAppService 服务接口
+            并继承IDisposable，显式释放资源
+            注意这里我们使用的对象，是视图对象模型
+            </summary>
+        </member>
+        <member name="T:Blog.Application.Services.CustomerAppService">
+            <summary>
+            CustomerAppService 服务接口实现类,继承 服务接口
+            通过 DTO 实现视图模型和领域模型的关系处理
+            作为调度者，协调领域层和基础层，
+            这里只是做一个面向用户用例的服务接口,不包含业务规则或者知识
+            </summary>
+        </member>
+        <member name="T:Blog.Application.ViewModel.AddressViewModel">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.AddressViewModel.Province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.AddressViewModel.City">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.AddressViewModel.County">
+            <summary>
+            区县
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.AddressViewModel.Street">
+            <summary>
+            街道
+            </summary>
+        </member>
+        <member name="T:Blog.Application.ViewModel.CustomerViewModel">
+            <summary>
+            子领域Customer的视图模型
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.CustomerViewModel.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.CustomerViewModel.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.CustomerViewModel.BirthDate">
+            <summary>
+            BirthDay
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.StudentViewModel.Province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.StudentViewModel.City">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.StudentViewModel.County">
+            <summary>
+            区县
+            </summary>
+        </member>
+        <member name="P:Blog.Application.ViewModel.StudentViewModel.Street">
+            <summary>
+            街道
+            </summary>
+        </member>
+    </members>
+</doc>

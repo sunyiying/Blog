@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Aop\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Attrubutes\" />
+    <Folder Include="Parse\" />
+    <Folder Include="Tools\" />
+  </ItemGroup>
+
+</Project>
