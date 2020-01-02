@@ -23,8 +23,6 @@ namespace Blog.Infra.Data.Repository
             this._dbContext = dbContext;
             _dbSet = _dbContext.Set<TEntity>();
         }
-
-
         public void Add(TEntity obj)
         {
             _dbSet.Add(obj);
@@ -41,12 +39,12 @@ namespace Blog.Infra.Data.Repository
             return _dbSet;
         }
 
-        public TEntity GetById(Guid id)
+        public TEntity GetById(object id)
         {
             return _dbSet.Find(id);
         }
 
-        public void Remove(Guid id)
+        public void Remove(object id)
         {
             _dbSet.Remove(_dbSet.Find(id));
         }

@@ -21,7 +21,7 @@ namespace Blog.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TEntity GetById(Guid id);
+        TEntity GetById(object id);
         /// <summary>
         /// 获取列表
         /// </summary>
@@ -36,7 +36,7 @@ namespace Blog.Domain.Interfaces
         /// 根据id删除
         /// </summary>
         /// <param name="id"></param>
-        void Remove(Guid id);
+        void Remove(object id);
         /// <summary>
         /// 保存
         /// </summary>

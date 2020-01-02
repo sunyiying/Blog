@@ -14,7 +14,10 @@ namespace Blog.Infra.Data.Mappings
             builder.ToTable("Person")
                 .Property(c => c.Id).HasColumnName("Id");
             builder.HasKey(c => c.Id);
-
+            builder.Property(c => c.PersonCode).HasMaxLength(30);
+            builder.Property(c => c.PassWord).HasMaxLength(100);
+            builder.Property(c => c.PersonCode).HasMaxLength(30);
+            builder.Property(c => c.PassWord).HasColumnName("PassWord").HasMaxLength(100);
             builder.OwnsMany(c => c.BookStore,
                 a =>
                 {

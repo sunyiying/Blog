@@ -9,8 +9,7 @@ namespace Blog.Domain.Models
 {
     [Owned]
     public class Book
-    {
-       // [Key]
+    {     
         public int Id { get; set; }
         public string BookName { get; set; }
 

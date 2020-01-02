@@ -4,6 +4,18 @@
         <name>Blog.WebApi</name>
     </assembly>
     <members>
+        <member name="T:Blog.WebApi.Controllers.UserController">
+            <summary>
+            用户相关操作的方法集合
+            </summary>
+        </member>
+        <member name="M:Blog.WebApi.Controllers.UserController.GenerateToken(System.String)">
+            <summary>
+            生成用户token信息
+            </summary>
+            <param name="userCode"></param>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebApi.Controllers.ValuesController">
             <summary>
             ValuesController 测试
@@ -47,6 +59,27 @@
             </summary>
             <param name="id"></param>
         </member>
+        <member name="T:Blog.WebApi.Extentions.ConfigService.AutoMapperSetup">
+            <summary>
+            AutoMapper 的启动服务
+            </summary>
+        </member>
+        <member name="M:Blog.WebApi.Extentions.ConfigService.CustomerInject.AddRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String)">
+            <summary>
+            通过反射 自动注入 仓储服务
+            </summary>
+            <param name="services"></param>
+            <param name="assemblyName"></param>
+            <param name="postFix"></param>
+        </member>
+        <member name="M:Blog.WebApi.Extentions.ConfigService.CustomerInject.AddServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String)">
+            <summary>
+            通过 反射 自动注入服务应用接口
+            </summary>
+            <param name="services"></param>
+            <param name="assemblyName"></param>
+            <param name="postFix"></param>
+        </member>
         <member name="M:Blog.WebApi.Extentions.ConfigService.SwaggerService.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Swagger服务
@@ -58,6 +91,13 @@
             swaggle中间件
             </summary>
             <param name="app"></param>
+        </member>
+        <member name="M:Blog.Common.JWT.JwtValidator.parse2Token(System.String)">
+            <summary>
+            校验所传递的token字符串是否有效
+            </summary>
+            <param name="securityToken"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

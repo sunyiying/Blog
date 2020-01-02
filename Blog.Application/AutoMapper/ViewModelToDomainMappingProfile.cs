@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Blog.Application.ViewModel;
+using Blog.Common.JWT;
 using Blog.Domain.Models;
+using Blog.Domain.Models.UserInfo;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +26,9 @@ namespace Blog.Application.AutoMapper
              .ForPath(d => d.Address.County, o => o.MapFrom(s => s.County))
              .ForPath(d => d.Address.Street, o => o.MapFrom(s => s.Street))
              ;
+
+            CreateMap<JwtTokenInfo, UserToken>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.TokenId));
 
             //这里以后会写领域命令，所以不能和DomainToViewModelMappingProfile写在一起。
             //学生视图模型 -> 添加新学生命令模型

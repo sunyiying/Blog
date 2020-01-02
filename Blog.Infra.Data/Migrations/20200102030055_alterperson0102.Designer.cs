@@ -4,14 +4,16 @@ using Blog.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Infra.Data.Migrations
 {
     [DbContext(typeof(StudyContext))]
-    partial class StudyContextModelSnapshot : ModelSnapshot
+    [Migration("20200102030055_alterperson0102")]
+    partial class alterperson0102
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,11 +76,9 @@ namespace Blog.Infra.Data.Migrations
                         .HasColumnName("Id")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime>("Expires")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime>("Expires");
 
-                    b.Property<DateTime>("IssuedAt")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime>("IssuedAt");
 
                     b.Property<string>("Issuer");
 

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Blog.Domain.Models;
+using Blog.Domain.Models.UserInfo;
+using System.Reflection;
+using System.Linq;
 
 namespace Blog.Infra.Data.Context
 {
@@ -21,7 +24,7 @@ namespace Blog.Infra.Data.Context
 
         public DbSet<Person> Persons { get; set; }
 
-
+        public DbSet<UserToken> UserTokens { get; set; }
 
         /// <summary>
         /// 重写自定义Map配置
@@ -32,7 +35,27 @@ namespace Blog.Infra.Data.Context
             //此处后续将修改为反射处理，动态构建
             modelBuilder.ApplyConfiguration(new StudentMap());
             modelBuilder.ApplyConfiguration(new PersonMap());
+            modelBuilder.ApplyConfiguration(new UserTokenMap());
 
+
+
+            //var assembly = Assembly.Load("Blog.Infra.Data");
+            //if (assembly != null)
+            //{
+            //    var types = assembly?.GetTypes().Where(c => c.IsClass
+            //    && c.IsGenericType
+            //    && c.Name.EndsWith("Map", StringComparison.OrdinalIgnoreCase)
+            //    && c.GetInterface(typeof(IEntityTypeConfiguration<>).FullName) != null
+            //    ).ToList();
+            //    if (types != null && types.Count > 0)
+            //    {
+            //        foreach (var ts in types)
+            //        {
+            //            dynamic instances = Activator.CreateInstance(ts);
+            //            modelBuilder.ApplyConfiguration(instances);
+            //        }
+            //    }
+            //}
 
 
             base.OnModelCreating(modelBuilder);

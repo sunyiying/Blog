@@ -4,14 +4,16 @@ using Blog.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Infra.Data.Migrations
 {
     [DbContext(typeof(StudyContext))]
-    partial class StudyContextModelSnapshot : ModelSnapshot
+    [Migration("20191231101517_token_table")]
+    partial class token_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,13 +31,6 @@ namespace Blog.Infra.Data.Migrations
                     b.Property<int>("Age");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("PassWord")
-                        .HasColumnName("PassWord")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("PersonCode")
-                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 
@@ -71,14 +66,11 @@ namespace Blog.Infra.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasMaxLength(50);
+                        .HasColumnName("Id");
 
-                    b.Property<DateTime>("Expires")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime>("Expires");
 
-                    b.Property<DateTime>("IssuedAt")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime>("IssuedAt");
 
                     b.Property<string>("Issuer");
 

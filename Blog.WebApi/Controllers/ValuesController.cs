@@ -15,7 +15,7 @@ namespace Blog.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        
+
         /// <summary>
         /// GET api/values
         /// </summary>
@@ -26,7 +26,7 @@ namespace Blog.WebApi.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        
+
         /// <summary>
         /// 根据ID 查询元素 GET api/values/5
         /// </summary>
@@ -35,6 +35,7 @@ namespace Blog.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
+            var a = HttpContext.User.Identity.IsAuthenticated;
             return "value";
         }
 
