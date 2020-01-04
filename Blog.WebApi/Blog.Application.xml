@@ -39,6 +39,11 @@
             <param name="password"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.Application.Interfaces.IStudentService.Register(Blog.Application.ViewModel.StudentViewModel)">
+            <summary>
+            StudentAppService 添加新 Student 
+            </summary>
+        </member>
         <member name="M:Blog.Application.Interfaces.IUserTokenAppService.GetTokenById(System.String)">
             <summary>
             根据Id 获取 用户的Token信息
@@ -59,6 +64,11 @@
             通过 DTO 实现视图模型和领域模型的关系处理
             作为调度者，协调领域层和基础层，
             这里只是做一个面向用户用例的服务接口,不包含业务规则或者知识
+            </summary>
+        </member>
+        <member name="M:Blog.Application.Services.StudentService.Register(Blog.Application.ViewModel.StudentViewModel)">
+            <summary>
+            StudentAppService 添加新 Student 
             </summary>
         </member>
         <member name="M:Blog.Application.Services.UserTokenAppService.SaveUserToken(Blog.Common.JWT.JwtTokenInfo)">

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.Application.ViewModel;
 using Blog.Common.JWT;
+using Blog.Domain.Commands;
 using Blog.Domain.Models;
 using Blog.Domain.Models.UserInfo;
 using System;
@@ -30,11 +31,15 @@ namespace Blog.Application.AutoMapper
             CreateMap<JwtTokenInfo, UserToken>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.TokenId));
 
+            CreateMap<PersonViewModel, Person>();
+
+
+
             //这里以后会写领域命令，所以不能和DomainToViewModelMappingProfile写在一起。
             //学生视图模型 -> 添加新学生命令模型
-            //CreateMap<StudentViewModel, RegisterStudentCommand>()
-            //    .ConstructUsing(c => new RegisterStudentCommand(c.Name, c.Email, c.BirthDate, c.Phone, c.Province, c.City,
-            //c.County, c.Street));
+            CreateMap<StudentViewModel, RegisterStudentCommand>()
+                .ConstructUsing(c => new RegisterStudentCommand(c.Name, c.Email, c.BirthDate, c.Phone, c.Province, c.City,
+            c.County, c.Street));
 
             ////学生视图模型 -> 更新学生信息命令模型
             //CreateMap<StudentViewModel, UpdateStudentCommand>()
@@ -43,7 +48,6 @@ namespace Blog.Application.AutoMapper
 
 
             //CreateMap<OrderViewModel, Order>();
-
             //CreateMap<OrderViewModel, RegisterOrderCommand>();
         }
     }

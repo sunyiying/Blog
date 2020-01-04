@@ -8,11 +8,16 @@ using Blog.Application.Interfaces;
 using Blog.Application.Services;
 using Blog.Common.Engineer;
 using Blog.Common.JWT;
+using Blog.Domain.CommandHandlers;
+using Blog.Domain.Commands;
+using Blog.Domain.Core.Bus;
 using Blog.Domain.Interfaces;
+using Blog.Infra.Data.Bus;
 using Blog.Infra.Data.Context;
 using Blog.Infra.Data.Repository;
 using Blog.WebApi.Extentions.Config;
 using Blog.WebApi.Extentions.ConfigService;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,9 +51,13 @@ namespace Blog.WebApi
             services.AddRepository("Blog.Infra.Data", "Repository");
             services.AddServices("Blog.Application", "Service");
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddMediatR(typeof(Startup));
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
             //services.AddTransient(typeof(IUserTokenAppService), typeof(UserTokenAppService));
             services.Configure<JwtSettings>(Configuration.GetSection(nameof(JwtSettings)));
+
+            services.AddScoped<IRequestHandler<RegisterStudentCommand, Unit>, StudentCommandHandler>();
+
 
             //添加jwt验证：
             services.AddAuthentication(option =>

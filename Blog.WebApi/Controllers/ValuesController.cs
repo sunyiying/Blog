@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Application.Interfaces;
 using Blog.Application.ViewModel;
 using Blog.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Blog.WebApi.Controllers
 {
@@ -15,6 +17,13 @@ namespace Blog.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IMemoryCache _cache;
+        private readonly IStudentService _studentService;
+        public ValuesController(IMemoryCache cache, IStudentService studentService)
+        {
+            this._cache = cache;
+            this._studentService = studentService;
+        }
 
         /// <summary>
         /// GET api/values
@@ -63,8 +72,10 @@ namespace Blog.WebApi.Controllers
         /// </summary>
         /// <param name="studentView"></param>
         [HttpPost("Student")]
-        public void Post(StudentViewModel studentView)
+        public async Task<IActionResult> Post(StudentViewModel studentView)
         {
+            var res = await Task.Run(() => { return "ok111111111"; });
+            return Ok(Task.FromResult(res).Result.ToString());
         }
 
 
@@ -78,14 +89,22 @@ namespace Blog.WebApi.Controllers
         {
         }
 
-
-        /// <summary>
-        /// 根据ID删除元素  // DELETE api/values/5
-        /// </summary>
-        /// <param name="id"></param>
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("Regist")]
+        public async Task<IActionResult> RegisterStudentAsync(StudentViewModel studentView)
         {
+            this._studentService.Register(studentView);
+            // 获取到缓存中的错误信息
+            var errorData = _cache.Get("ErrorData");
+            var notificacoes = await Task.Run(() => (List<string>)errorData);
+            List<string> message = new List<string>();
+            // 遍历添加到ViewData.ModelState 中
+            notificacoes?.ForEach(c => message.Add(c));
+            if (message != null && message.Count > 0)
+                return Ok(message);
+            else
+                return Ok("success");
         }
+
+
     }
 }

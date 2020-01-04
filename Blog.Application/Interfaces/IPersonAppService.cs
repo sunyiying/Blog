@@ -14,5 +14,9 @@ namespace Blog.Application.Interfaces
         /// <param name="password"></param>
         /// <returns></returns>
         Person GetPersonByPassWord(string userName, string password);
+
+
+
+
     }
 }

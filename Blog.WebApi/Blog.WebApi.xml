@@ -53,12 +53,6 @@
             <param name="id"></param>
             <param name="value"></param>
         </member>
-        <member name="M:Blog.WebApi.Controllers.ValuesController.Delete(System.Int32)">
-            <summary>
-            根据ID删除元素  // DELETE api/values/5
-            </summary>
-            <param name="id"></param>
-        </member>
         <member name="T:Blog.WebApi.Extentions.ConfigService.AutoMapperSetup">
             <summary>
             AutoMapper 的启动服务
