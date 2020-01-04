@@ -1,5 +1,6 @@
 ﻿using Blog.Domain.Core.Bus;
 using Blog.Domain.Core.Commands;
+using Blog.Domain.Core.Notifications;
 using Blog.Domain.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -38,15 +39,19 @@ namespace Blog.Domain.CommandHandlers
 
         protected void NotifyValidattionErrors(Command message)
         {
-            List<string> errorInfo = new List<string>();
+            //List<string> errorInfo = new List<string>();
+            //foreach (var error in message.ValidationResult.Errors)
+            //{
+            //    errorInfo.Add(error.ErrorMessage);
+            //}
+            //_cache.Set("ErrorData", errorInfo);
+
             foreach (var error in message.ValidationResult.Errors)
             {
-                errorInfo.Add(error.ErrorMessage);
+                _bus.RaiseEvent(new DomainNotification("", error.ErrorMessage));
             }
-            _cache.Set("ErrorData", errorInfo);
+
+
         }
-
-
-
     }
 }

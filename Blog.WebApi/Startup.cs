@@ -11,6 +11,7 @@ using Blog.Common.JWT;
 using Blog.Domain.CommandHandlers;
 using Blog.Domain.Commands;
 using Blog.Domain.Core.Bus;
+using Blog.Domain.Core.Notifications;
 using Blog.Domain.Interfaces;
 using Blog.Infra.Data.Bus;
 using Blog.Infra.Data.Context;
@@ -58,6 +59,7 @@ namespace Blog.WebApi
 
             services.AddScoped<IRequestHandler<RegisterStudentCommand, Unit>, StudentCommandHandler>();
 
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             //添加jwt验证：
             services.AddAuthentication(option =>

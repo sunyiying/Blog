@@ -29,7 +29,6 @@ namespace Blog.Application.Services
         {
             var registerCommand = _mapper.Map<RegisterStudentCommand>(studentViewModel);
             _bus.SendCommand(registerCommand);
-            //Bus.SendCommand(registerCommand);
         }
     }
 }

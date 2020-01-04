@@ -1,5 +1,6 @@
 ﻿using Blog.Domain.Commands;
 using Blog.Domain.Core.Bus;
+using Blog.Domain.Core.Notifications;
 using Blog.Domain.Interfaces;
 using Blog.Domain.Models;
 using MediatR;
@@ -14,7 +15,7 @@ namespace Blog.Domain.CommandHandlers
 {
     public class StudentCommandHandler : CommandHandler
          , IRequestHandler<RegisterStudentCommand, Unit>
-    //,IRequestHandler<UpdateStudentCommand,Unit>
+    , IRequestHandler<UpdateStudentCommand, Unit>
     //,IRequestHandler<RemoveStudentCommand,Unit>
     {
 
@@ -46,8 +47,10 @@ namespace Blog.Domain.CommandHandlers
 
             if (_studentRepository.GetByEmail(customer.Email) != null)
             {
-                List<string> errorInfo = new List<string>() { "此邮箱已存在！！" };
-                _cache.Set("ErrorData", errorInfo);
+                //List<string> errorInfo = new List<string>() { "此邮箱已存在！！" };
+                //_cache.Set("ErrorData", errorInfo);
+
+                _bus.RaiseEvent(new DomainNotification("", "此邮箱已存在"));
                 return Task.FromResult(new Unit());
             }
 
@@ -60,6 +63,11 @@ namespace Blog.Domain.CommandHandlers
                 // waiting....
             }
             return Task.FromResult(new Unit());
+        }
+
+        public Task<Unit> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

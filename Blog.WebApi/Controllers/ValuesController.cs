@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Application.Interfaces;
 using Blog.Application.ViewModel;
+using Blog.Domain.Core.Notifications;
 using Blog.Domain.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -19,10 +21,14 @@ namespace Blog.WebApi.Controllers
     {
         private IMemoryCache _cache;
         private readonly IStudentService _studentService;
-        public ValuesController(IMemoryCache cache, IStudentService studentService)
+        private readonly DomainNotificationHandler _notifications;
+        public ValuesController(IMemoryCache cache, IStudentService studentService
+            , INotificationHandler<DomainNotification> notification
+            )
         {
             this._cache = cache;
             this._studentService = studentService;
+            this._notifications = notification as DomainNotificationHandler;
         }
 
         /// <summary>
@@ -34,6 +40,7 @@ namespace Blog.WebApi.Controllers
         {
             return new string[] { "value1", "value2" };
         }
+
 
 
         /// <summary>
@@ -93,16 +100,32 @@ namespace Blog.WebApi.Controllers
         public async Task<IActionResult> RegisterStudentAsync(StudentViewModel studentView)
         {
             this._studentService.Register(studentView);
-            // 获取到缓存中的错误信息
-            var errorData = _cache.Get("ErrorData");
-            var notificacoes = await Task.Run(() => (List<string>)errorData);
-            List<string> message = new List<string>();
-            // 遍历添加到ViewData.ModelState 中
-            notificacoes?.ForEach(c => message.Add(c));
-            if (message != null && message.Count > 0)
-                return Ok(message);
+            #region 缓存方式处理
+            //// 获取到缓存中的错误信息
+            //var errorData = _cache.Get("ErrorData");
+            //var notificacoes = await Task.Run(() => (List<string>)errorData);
+            //List<string> message = new List<string>();
+            //// 遍历添加到ViewData.ModelState 中
+            //notificacoes?.ForEach(c => message.Add(c));
+            //if (message != null && message.Count > 0)
+            //    return Ok(message);
+            //else
+            //    return Ok("success");
+            #endregion
+            await Task.Run(() => "ok");
+            #region 领域通知实现
+            if (_notifications.HasNotifications())
+            {
+                var note = _notifications.GetNotifications();
+                //_notifications.Dispose();
+                return Ok(note);
+            }
             else
-                return Ok("success");
+            {
+                return Ok("Success");
+            }
+            #endregion
+
         }
 
 
