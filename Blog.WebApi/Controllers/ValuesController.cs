@@ -38,7 +38,11 @@ namespace Blog.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            string @aa = "test";
+
+
+            return new string[] { "value1", "value2",aa };
         }
 
 
